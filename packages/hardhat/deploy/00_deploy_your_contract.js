@@ -17,7 +17,7 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deployer } = await getNamedAccounts();
   const chainId = await getChainId();
 
-  await deploy("YourContract", {
+  await deploy("CatFact", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
     // args: [ "Hello", ethers.utils.parseEther("1.5") ],
@@ -26,16 +26,16 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   });
 
   // Getting a previously deployed contract
-  const YourContract = await ethers.getContract("YourContract", deployer);
+  const CatFact = await ethers.getContract("CatFact", deployer);
+
+  // To take ownership of yourContract using the ownable library uncomment next line and add the address you want to be the owner.
+  await CatFact.transferOwnership("0x05b8eA2CDC6791E524bEf696ebb7A8a1Ad9d0c7F");
+
   /*  await YourContract.setPurpose("Hello");
   
-    To take ownership of yourContract using the ownable library uncomment next line and add the 
-    address you want to be the owner. 
-    // await yourContract.transferOwnership(YOUR_ADDRESS_HERE);
 
     //const yourContract = await ethers.getContractAt('YourContract', "0xaAC799eC2d00C013f1F11c37E654e59B0429DF6A") //<-- if you want to instantiate a version of a contract at a specific address!
   */
-
   /*
   //If you want to send value to an address from the deployer
   const deployerWallet = ethers.provider.getSigner()
@@ -75,5 +75,5 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   // } catch (error) {
   //   console.error(error);
   // }
-};
+};;
 module.exports.tags = ["YourContract"];

@@ -783,6 +783,11 @@ const DAIABI = [
     type: "function",
   },
 ];
+// LINK Token Contract ABI
+const LINKABI = [
+  "function balanceOf(address owner) external view returns (uint256 balance)",
+  "function transferAndCall(address to, uint256 value, bytes data) external returns (bool success)",
+];
 
 // Mainnet DAI, Optimism and Arbitrium Rollup Contracts with local addresses
 module.exports = {
@@ -795,6 +800,14 @@ module.exports = {
       UNI: {
         address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
         abi: ERC20ABI,
+      },
+    },
+  },
+  42: {
+    contracts: {
+      LINK: {
+        address: "0xa36085F69e2889c224210F603D836748e7dC0088",
+        abi: LINKABI,
       },
     },
   },
