@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Link, Route, Switch, useLocation } from "react-router-dom";
 import "./App.css";
 import { Account, Contract, Header, ThemeSwitch, NetworkDisplay, NetworkSwitch } from "./components";
-import { NETWORKS, ALCHEMY_KEY } from "./constants";
+import { NETWORKS, ALCHEMY_KEY, INFURA_ID } from "./constants";
 import externalContracts from "./contracts/external_contracts";
 // contracts
 import deployedContracts from "./contracts/hardhat_contracts.json";
@@ -47,6 +47,7 @@ const web3Modal = Web3ModalSetup();
 
 // 🛰 providers
 const providers = [
+  `https://kovan.infura.io/v3/${INFURA_ID}`,
   "https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406",
   `https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_KEY}`,
   "https://rpc.scaffoldeth.io:48544",
@@ -72,7 +73,7 @@ function App(props) {
     process.env.REACT_APP_PROVIDER ? process.env.REACT_APP_PROVIDER : targetNetwork.rpcUrl,
   ]);
   const mainnetProvider = useStaticJsonRPC(providers);
-  const kovanProvider = useStaticJsonRPC(NETWORKS.kovan.rpcUrl);
+  const kovanProvider = useStaticJsonRPC(providers);
 
   if (DEBUG) console.log(`Using ${selectedNetwork} network`);
 

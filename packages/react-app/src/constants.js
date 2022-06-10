@@ -5,9 +5,9 @@ export const INFURA_ID = "6448d7319d6d4ce9a72ce2e334216bbe";
 export const ETHERSCAN_KEY = "B8YVIHXHCNJHZA7C567YAQM1YR3H76VGRA";
 
 // BLOCKNATIVE ID FOR Notify.js:
-export const BLOCKNATIVE_DAPPID = "0b58206a-f3c0-4701-a62f-73c7243e8c77";
+export const BLOCKNATIVE_DAPPID = "93a6bb54-08d4-4aa2-990b-bc88ca10ec4e";
 
-export const ALCHEMY_KEY = "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
+export const ALCHEMY_KEY = "kJwUfrT27NUPpFeDe_OwbnFDdTJOsvSs";
 
 const localRpcUrl = process.env.REACT_APP_CODESPACES
   ? `https://${window.location.hostname.replace("3000", "8545")}`

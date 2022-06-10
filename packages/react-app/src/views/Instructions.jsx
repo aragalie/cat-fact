@@ -5,7 +5,6 @@ function Instructions() {
     <div style={{ textAlign: "center", textJustify: "left" }}>
       <div
         style={{
-          position: "fixed",
           paddingTop: 20,
           paddingLeft: 20,
           paddingBottom: 30,
