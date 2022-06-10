@@ -12,10 +12,9 @@ const localChainId = "31337";
 //     }, ms)
 //   );
 
-module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
+module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
-  const chainId = await getChainId();
 
   await deploy("CatFact", {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
@@ -75,5 +74,5 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   // } catch (error) {
   //   console.error(error);
   // }
-};;
-module.exports.tags = ["YourContract"];
+};
+module.exports.tags = ["CatFact"];

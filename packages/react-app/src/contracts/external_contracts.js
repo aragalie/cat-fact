@@ -783,10 +783,37 @@ const DAIABI = [
     type: "function",
   },
 ];
-// LINK Token Contract ABI
+
 const LINKABI = [
-  "function balanceOf(address owner) external view returns (uint256 balance)",
-  "function transferAndCall(address to, uint256 value, bytes data) external returns (bool success)",
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
+      },
+    ],
+    name: "transferAndCall",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "success",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ];
 
 // Mainnet DAI, Optimism and Arbitrium Rollup Contracts with local addresses

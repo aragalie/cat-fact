@@ -8,6 +8,8 @@ import "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
 contract CatFact is ChainlinkClient, ConfirmedOwner {
     using Chainlink for Chainlink.Request;
 
+    LinkTokenInterface public LINK;
+
     string public catFact =
         "Owning a cat is actually proven to be beneficial for your health.";
 
@@ -55,7 +57,7 @@ contract CatFact is ChainlinkClient, ConfirmedOwner {
      */
 
     /**
-     * @notice Initialize the link token and target oracle
+     * @notice Initialize the link token and target oracle on KOVAN TEST NETWORK
      *
      * Kovan Testnet details:
      * Link Token: 0xa36085F69e2889c224210F603D836748e7dC0088
@@ -64,9 +66,13 @@ contract CatFact is ChainlinkClient, ConfirmedOwner {
      *
      */
     constructor() ConfirmedOwner(msg.sender) {
+        LINK = LinkTokenInterface(0xa36085F69e2889c224210F603D836748e7dC0088);
+
         setChainlinkToken(0xa36085F69e2889c224210F603D836748e7dC0088);
         setChainlinkOracle(0x74EcC8Bdeb76F2C6760eD2dc8A46ca5e581fA656);
+        
         jobId = "7d80a6386ef543a3abb52817f6707e3b";
+        
         chainlinkFee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)
 
         // 10% of the Chainlink fee
@@ -109,14 +115,21 @@ contract CatFact is ChainlinkClient, ConfirmedOwner {
         address _addr,
         uint256 _value,
         bytes calldata _data
-    ) external returns (bool) {
+    ) public onlyLINK {
         uint256 APICallPrice = getCatFactAPICallPrice();
 
-        // check if the sender transferred enough LINK to make at least 1 API call
+        // check if the sender transferred enough LINK for at least 1 API call
         require(_value >= APICallPrice, "Not enough LINK");
 
-        // There is no good way I can think of - for now :) - to limit the amount of LINK which can be sent to this contract. So if the caller sends more than 0.11, they still get just 1 API call => more profit for the contract but not great for the caller.
+        // There is no good way I can think of - for now :) - to limit the amount of LINK which can be sent to this contract.  
+        //So if the caller sends more than 0.11, they still get just 1 API call => more profit for the contract but not great for the caller.
+
         requestCatFact();
+    }
+
+    modifier onlyLINK() {
+        require(msg.sender == address(LINK), "Must use LINK token");
+        _;
     }
 
     /**
@@ -134,16 +147,16 @@ contract CatFact is ChainlinkClient, ConfirmedOwner {
      * Check how much LINK the contract has
      */
     function getLINKBalance() public view returns (uint256) {
-        LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
-        return link.balanceOf(address(this));
+        (chainlinkTokenAddress());
+        return LINK.balanceOf(address(this));
     }
 
     /**
-     * Contract owner can withdraw LINK from the contract
+     * Contract owner can withdraw the LINK from the contract
      */
     function withdrawLINK() public onlyOwner {
-        LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
-        link.transfer(msg.sender, link.balanceOf(address(this)));
+        (chainlinkTokenAddress());
+        LINK.transfer(msg.sender, LINK.balanceOf(address(this)));
     }
 
     /**
