@@ -1,4 +1,14 @@
-# 🏗 Scaffold-ETH
+# This is my latest 🏗 Scaffold-ETH build: 🐈 facts on the ⛓
+
+It has cats 🐈, it has facts 📝, it has facts about the cats, so it's a....CatFact Retriever? FactoCatorius? CatoFacto?  😂
+
+The link is here so you can play with with it yourself 👉 https://cat-fact.surge.sh/ 
+
+I built it as an (extended) solution to the Blockchain dev interview question "Can you call and external API from a smart contract?" But it's done with a twist, in that you can also make money with the contract 🎉 ....that is, if you manage to find enough cat fact lovers 🤷‍♂️ 
+
+
+------
+# What is Scaffold-ETH and how can you install it?
 
 > everything you need to build on Ethereum! 🚀
 
