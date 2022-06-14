@@ -12,6 +12,7 @@ require("hardhat-abi-exporter");
 
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
+require("solidity-coverage");
 
 const INFURA_KEY = "6448d7319d6d4ce9a72ce2e334216bbe";
 const ETHERSCAN_KEY = "B8YVIHXHCNJHZA7C567YAQM1YR3H76VGRA";
@@ -272,16 +273,7 @@ module.exports = {
   solidity: {
     compilers: [
       {
-        version: "0.8.4",
-        settings: {
-          optimizer: {
-            enabled: true,
-            runs: 200,
-          },
-        },
-      },
-      {
-        version: "0.6.7",
+        version: "0.8.10",
         settings: {
           optimizer: {
             enabled: true,

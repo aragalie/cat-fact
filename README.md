@@ -8,6 +8,8 @@ The smart contract is here https://github.com/aragalie/cat-fact/blob/master/pack
 
 I built it as an (extended) solution to the Blockchain dev interview question "Can you call and external API from a smart contract?" But it's done with a twist, in that you can also make money with the contract 🎉 ....that is, if you manage to find enough cat fact lovers 🤷‍♂️ 
 
+## API Keys notice
+Make sure to use your own Infura API key, otherwise it will not work.
 
 ------
 # What is Scaffold-ETH and how can you install it?
